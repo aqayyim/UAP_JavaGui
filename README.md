@@ -1,1 +1,3 @@
-# UAP_JavaGui
+# Kelompok UAP
+- Ahmad Ahmad Qayyim
+- Moh. Khairul Umam
