@@ -1,3 +1,3 @@
 # Kelompok UAP
-- Ahmad Ahmad Qayyim
+- Ahmad Qayyim
 - Moh. Khairul Umam
