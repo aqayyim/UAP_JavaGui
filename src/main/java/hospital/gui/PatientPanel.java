@@ -3,6 +3,7 @@ package hospital.gui;
 import javax.swing.*;
 
 import hospital.exception.ValidationException;
+import hospital.model.Patient;
 
 import java.awt.*;
 
@@ -84,4 +85,15 @@ public class PatientPanel extends JPanel {
             throw new ValidationException("Name is required");
         }
     }
+
+    public class PatientService {
+    public void addPatient(Patient patient) {
+        // Add patient to database or list
+    }
+
+    public void deletePatient(int index) {
+        // Delete patient from list or database
+    }
+}
+
 }

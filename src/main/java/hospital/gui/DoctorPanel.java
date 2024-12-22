@@ -57,3 +57,16 @@ private void setupLayout() {
 addButton.addActionListener(e -> addDoctor());
 deleteButton.addActionListener(e -> deleteDoctor());
 clearButton.addActionListener(e -> clearForm());
+
+private void validateInput() throws ValidationException {
+    if (nameField.getText().trim().isEmpty()) {
+        throw new ValidationException("Name is required");
+    }
+    if (specializationField.getText().trim().isEmpty()) {
+        throw new ValidationException("Specialization is required");
+    }
+    if (phoneField.getText().trim().isEmpty()) {
+        throw new ValidationException("Phone number is required");
+    }
+}
+

@@ -73,6 +73,16 @@ public class MainFrame extends JFrame {
         add(tabbedPane, BorderLayout.CENTER);
         add(statusBar, BorderLayout.SOUTH);
 
+
+        // Appearance Customization
+        tabbedPane.setBackground(new Color(236, 240, 241));
+        tabbedPane.setForeground(new Color(44, 62, 80));
+        
+        UIManager.put("Button.background", new Color(52, 152, 219));
+        UIManager.put("Button.foreground", Color.WHITE);
+        UIManager.put("Button.font", new Font("Arial", Font.BOLD, 12));
+        
+        setResizable(false);
     }
 }
 
