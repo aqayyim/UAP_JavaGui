@@ -35,7 +35,8 @@ public class Patient {
     }
 
     public static Patient getPatientById(String id) {
-        return new Patient(id, "John Doe", "01/01/1990", "123 Main St", "1234567890");
+        return new Patient(id, "John Doe", "01/01/1990", "123 Main St", "1234567890"),
+        new Patient("P002", "Jane Smith", "02/02/1985", "456 Elm St", "2345678901");
     }
 }
 
