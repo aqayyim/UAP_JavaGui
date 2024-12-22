@@ -70,3 +70,13 @@ private void validateInput() throws ValidationException {
     }
 }
 
+private void deleteDoctor() {
+    int selectedRow = doctorTable.getSelectedRow();
+    if (selectedRow >= 0) {
+        doctorService.deleteDoctor(selectedRow);
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select a doctor to delete");
+    }
+}
+
+
