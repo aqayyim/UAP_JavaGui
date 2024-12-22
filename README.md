@@ -20,7 +20,7 @@ Cowmam's Clinic Management System adalah aplikasi desktop yang dirancang untuk m
 - File handling untuk penyimpanan data
 
 ## 📁 Struktur Project
-
+```
 LATIHANPUSH
 ├── src
 │   └── main
@@ -43,7 +43,7 @@ LATIHANPUSH
 │                   ├── PatientTest.java
 │                   ├── DoctorTest.java
 │                   └── TestRunner.java
-
+```
 ## ⚙️ Fitur Utama
 1. **Manajemen Pasien**
    - Pendaftaran pasien baru
