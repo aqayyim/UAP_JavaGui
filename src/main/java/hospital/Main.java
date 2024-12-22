@@ -1,9 +1,8 @@
 package hospital;
 
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;  // Sesuaikan dengan package yang benar
-
 import hospital.gui.MainFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class Main {
     public static void main(String[] args) {
