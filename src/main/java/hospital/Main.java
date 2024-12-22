@@ -1,8 +1,9 @@
 package hospital;
 
-import hospital.gui.MainFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+
+import hospital.gui.MainFrame;
 
 public class Main {
     public static void main(String[] args) {
