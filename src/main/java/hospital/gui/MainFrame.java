@@ -61,6 +61,18 @@ public class MainFrame extends JFrame {
         
         add(headerPanel, BorderLayout.NORTH);
         add(tabbedPane, BorderLayout.CENTER);
+
+        // Status bar
+        JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        statusBar.setBorder(BorderFactory.createEtchedBorder());
+        JLabel statusLabel = new JLabel("Welcome to Cowmam's Clinic Management System");
+        statusLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        statusBar.add(statusLabel);
+        
+        add(headerPanel, BorderLayout.NORTH);
+        add(tabbedPane, BorderLayout.CENTER);
+        add(statusBar, BorderLayout.SOUTH);
+
     }
 }
 

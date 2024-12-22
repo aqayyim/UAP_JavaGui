@@ -53,3 +53,7 @@ private void setupLayout() {
     setLayout(new BorderLayout(10, 10));
     // Layout for search panel, form panel, buttons, and table...
 }
+
+addButton.addActionListener(e -> addDoctor());
+deleteButton.addActionListener(e -> deleteDoctor());
+clearButton.addActionListener(e -> clearForm());

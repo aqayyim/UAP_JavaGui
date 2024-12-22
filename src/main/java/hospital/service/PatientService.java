@@ -44,3 +44,25 @@ private void updateTable() {
         addToTable(patient);
     }
 }
+
+public DefaultTableModel getTableModel() {
+    return tableModel;
+}
+
+public void deletePatient(int selectedRow) {
+    if (selectedRow >= 0 && selectedRow < patients.size()) {
+        patients.remove(selectedRow);
+        tableModel.removeRow(selectedRow);
+        saveData();
+    }
+}
+
+
+public void updatePatient(int selectedRow, Patient updatedPatient) {
+    if (selectedRow >= 0 && selectedRow < patients.size()) {
+        updatedPatient.setId(patients.get(selectedRow).getId());
+        patients.set(selectedRow, updatedPatient);
+        updateTable();
+        saveData();
+    }
+}

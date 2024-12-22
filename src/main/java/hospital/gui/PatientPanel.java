@@ -1,6 +1,9 @@
 package hospital.gui;
 
 import javax.swing.*;
+
+import hospital.exception.ValidationException;
+
 import java.awt.*;
 
 public class PatientPanel extends JPanel {
@@ -67,16 +70,18 @@ public class PatientPanel extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    private void addListeners() {
-        addButton.addActionListener(e -> addPatient());
-        clearButton.addActionListener(e -> clearForm());
-    }
-
     private void addPatient() {
-        // Add patient logic
+        try {
+            validateInput();
+            // Add patient logic
+        } catch (ValidationException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Validation Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    private void clearForm() {
-        // Clear form logic
+    private void validateInput() throws ValidationException {
+        if (nameField.getText().trim().isEmpty()) {
+            throw new ValidationException("Name is required");
+        }
     }
 }

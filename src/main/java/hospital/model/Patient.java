@@ -33,5 +33,9 @@ public class Patient {
             throw new IllegalArgumentException("Invalid phone number");
         }
     }
+
+    public static Patient getPatientById(String id) {
+        return new Patient(id, "John Doe", "01/01/1990", "123 Main St", "1234567890");
+    }
 }
 
