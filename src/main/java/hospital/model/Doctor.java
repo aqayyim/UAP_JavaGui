@@ -43,5 +43,12 @@ public class Doctor {
     public static Doctor getDoctorById(String id) {
         return new Doctor(id, "Dr. Smith", "Cardiology", "Mon-Fri 9am-5pm", "1234567890");
     }
+
+    public static Doctor[] getDoctors() {
+        return new Doctor[] {
+            new Doctor("D001", "Dr. Smith", "Cardiology", "Mon-Fri 9am-5pm", "1234567890"),
+            new Doctor("D002", "Dr. Johnson", "Neurology", "Mon-Wed 10am-4pm", "2345678901")
+        };
+    }
 }
 
