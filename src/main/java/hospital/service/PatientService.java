@@ -1,30 +1,28 @@
-package hospital.service;
+private void addToTable(Patient patient) {
+    tableModel.addRow(new Object[]{
+        patient.getId(),
+        patient.getName(),
+        patient.getDateOfBirth(),
+        patient.getAddress(),
+        patient.getPhoneNumber()
+    });
+}
 
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JOptionPane;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.*;
-import hospital.model.Patient;
-
-public class PatientService {
-    private List<Patient> patients;
-    private DefaultTableModel tableModel;
-    private static final String DATA_FILE = "patients.dat";
-
-    public PatientService() {
-        patients = new ArrayList<>();
-        initializeTableModel();
-        loadData();
+@SuppressWarnings("unchecked")
+private void loadData() {
+    File file = new File(DATA_FILE);
+    if (!file.exists()) {
+        return;
     }
-
-    private void initializeTableModel() {
-        String[] columns = {"ID", "Name", "Date of Birth", "Address", "Phone"};
-        tableModel = new DefaultTableModel(columns, 0) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+    
+    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+        Object obj = ois.readObject();
+        if (obj instanceof List<?>) {
+            patients = (List<Patient>) obj;
+            updateTable();
+        }
+    } catch (Exception e) {
+        System.err.println("Error loading data: " + e.getMessage());
+        patients = new ArrayList<>();
     }
 }

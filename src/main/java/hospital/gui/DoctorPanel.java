@@ -20,3 +20,16 @@ private void initComponents() {
     specializationField = new JTextField(20);
     phoneField = new JTextField(15);
 }
+
+private JTable doctorTable;
+private JButton addButton;
+private JButton deleteButton;
+private JButton clearButton;
+
+private void initComponents() {
+    // previous components...
+    doctorTable = new JTable(doctorService.getTableModel());
+    addButton = new JButton("Add Doctor");
+    deleteButton = new JButton("Delete");
+    clearButton = new JButton("Clear");
+}
