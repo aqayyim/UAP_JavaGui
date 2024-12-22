@@ -27,7 +27,7 @@ public class DoctorService {
             }
         };
     }
-
+    
     public void addDoctor(Doctor doctor) {
         try {
             String id = String.format("D%03d", doctors.size() + 1);
@@ -47,19 +47,23 @@ public class DoctorService {
         }
     }
 
-    // Menambahkan dokter ke dalam tabel
     private void addToTable(Doctor doctor) {
         tableModel.addRow(new Object[]{
-            doctor.getId(), doctor.getName(), doctor.getSpecialization(), doctor.getSchedule(), doctor.getPhoneNumber()
+            doctor.getId(),
+            doctor.getName(),
+            doctor.getSpecialization(),
+            doctor.getSchedule(),
+            doctor.getPhoneNumber()
         });
     }
-
+    
     @SuppressWarnings("unchecked")
     private void loadData() {
         File file = new File(DATA_FILE);
         if (!file.exists()) {
             return;
         }
+        
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             Object obj = ois.readObject();
             if (obj instanceof List<?>) {
@@ -67,10 +71,11 @@ public class DoctorService {
                 updateTable();
             }
         } catch (Exception e) {
+            System.err.println("Error loading data: " + e.getMessage());
             doctors = new ArrayList<>();
         }
     }
-
+    
     private void saveData() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {
             oos.writeObject(doctors);
@@ -81,18 +86,18 @@ public class DoctorService {
                 JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
     private void updateTable() {
         tableModel.setRowCount(0);
         for (Doctor doctor : doctors) {
             addToTable(doctor);
         }
     }
-
+    
     public DefaultTableModel getTableModel() {
         return tableModel;
     }
-
+    
     public void deleteDoctor(int selectedRow) {
         if (selectedRow >= 0 && selectedRow < doctors.size()) {
             doctors.remove(selectedRow);
@@ -100,7 +105,7 @@ public class DoctorService {
             saveData();
         }
     }
-
+    
     public void updateDoctor(int selectedRow, Doctor updatedDoctor) {
         if (selectedRow >= 0 && selectedRow < doctors.size()) {
             updatedDoctor.setId(doctors.get(selectedRow).getId());
@@ -110,4 +115,3 @@ public class DoctorService {
         }
     }
 }
-

@@ -1,3 +1,10 @@
+package hospital;
+
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;  // Sesuaikan dengan package yang benar
+
+import hospital.gui.MainFrame;
+
 public class Main {
     public static void main(String[] args) {
         try {

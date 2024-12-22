@@ -1,6 +1,9 @@
 package hospital.model;
 
-public class Doctor {
+import java.io.Serializable;
+
+public class Doctor implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String id;
     private String name;
     private String specialization;
@@ -14,13 +17,10 @@ public class Doctor {
         this.schedule = schedule;
         this.phoneNumber = phoneNumber;
     }
-
+    
     // Getters and setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
-}
-
-    // Getter dan setter untuk atribut lainnya
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public String getSpecialization() { return specialization; }
@@ -30,15 +30,3 @@ public class Doctor {
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 }
-    public String getPhoneNumber() { return phoneNumber; }
-    
-    public void setPhoneNumber(String phoneNumber) {
-        // Validasi format nomor telepon
-        if (phoneNumber != null && phoneNumber.matches("\\d{10,15}")) {
-            this.phoneNumber = phoneNumber;
-        } else {
-            throw new IllegalArgumentException("Invalid phone number");
-        }
-    }
-}
-
