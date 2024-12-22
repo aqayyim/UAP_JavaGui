@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PatientPanel extends JPanel {
-    private JButton addButton;
-    private JButton clearButton;
+    private JTable patientTable;
 
     public PatientPanel() {
         initComponents();
@@ -13,15 +12,12 @@ public class PatientPanel extends JPanel {
     }
 
     private void initComponents() {
-        addButton = new JButton("Add Patient");
-        clearButton = new JButton("Clear");
+        patientTable = new JTable(10, 5);  // Dummy table model for example
     }
 
     private void setupLayout() {
         setLayout(new BorderLayout(10, 10));
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(addButton);
-        buttonPanel.add(clearButton);
-        add(buttonPanel, BorderLayout.SOUTH);
+        JScrollPane scrollPane = new JScrollPane(patientTable);
+        add(scrollPane, BorderLayout.CENTER);
     }
 }

@@ -33,3 +33,18 @@ private void initComponents() {
     deleteButton = new JButton("Delete");
     clearButton = new JButton("Clear");
 }
+
+private JComboBox<String> startDayCombo;
+private JComboBox<String> endDayCombo;
+private JComboBox<String> startHourCombo;
+private JComboBox<String> endHourCombo;
+
+private void initComponents() {
+    String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    String[] hours = getHours();
+
+    startDayCombo = new JComboBox<>(days);
+    endDayCombo = new JComboBox<>(days);
+    startHourCombo = new JComboBox<>(hours);
+    endHourCombo = new JComboBox<>(hours);
+}

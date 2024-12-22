@@ -9,7 +9,7 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 700);
         
-        // Header panel with title and subtitle
+        // Header with clinic name and subtitle
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(new Color(41, 128, 185));
         
@@ -26,6 +26,13 @@ public class MainFrame extends JFrame {
         titlePanel.add(subTitle);
         
         headerPanel.add(titlePanel, BorderLayout.WEST);
+        
+        // Date label
+        JLabel dateLabel = new JLabel(new java.text.SimpleDateFormat("dd MMMM yyyy").format(new java.util.Date()));
+        dateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        dateLabel.setForeground(Color.WHITE);
+        
+        headerPanel.add(dateLabel, BorderLayout.EAST);
         add(headerPanel, BorderLayout.NORTH);
     }
 }
