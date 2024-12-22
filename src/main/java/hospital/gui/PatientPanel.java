@@ -1,6 +1,7 @@
 package hospital.gui;
 
 import javax.swing.*;
+import javax.swing.event.DocumentListener;
 
 import hospital.exception.ValidationException;
 import hospital.model.Patient;
@@ -96,4 +97,21 @@ public class PatientPanel extends JPanel {
     }
 }
 
+public class PatientPanel extends JPanel {
+    private JTextField searchField;
+
+    public PatientPanel() {
+        initComponents();
+        addListeners();
+    }
+
+    private void search() {
+        String searchText = searchField.getText().toLowerCase();
+        // Filter patient list based on search text
+    }
+
+    private void addListeners() {
+        searchField.getDocument().addDocumentListener((DocumentListener) e -> search());
+    }
 }
+

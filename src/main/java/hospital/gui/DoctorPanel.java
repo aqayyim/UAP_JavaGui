@@ -78,4 +78,7 @@ private void deleteDoctor() {
     }
 }
 
+private void search() {
+    String searchText = searchField.getText().toLowerCase();
+}
 
