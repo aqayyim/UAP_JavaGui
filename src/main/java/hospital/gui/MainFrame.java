@@ -9,7 +9,7 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 700);
         
-        // Header with clinic name and subtitle
+                // Header Panel setup
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(new Color(41, 128, 185));
         
@@ -27,12 +27,40 @@ public class MainFrame extends JFrame {
         
         headerPanel.add(titlePanel, BorderLayout.WEST);
         
-        // Date label
-        JLabel dateLabel = new JLabel(new java.text.SimpleDateFormat("dd MMMM yyyy").format(new java.util.Date()));
-        dateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        dateLabel.setForeground(Color.WHITE);
+        // TabbedPane for Patients and Doctors
+        tabbedPane = new JTabbedPane();
+        tabbedPane.addTab("Patients", new JPanel());
+        tabbedPane.addTab("Doctors", new JPanel());
         
-        headerPanel.add(dateLabel, BorderLayout.EAST);
         add(headerPanel, BorderLayout.NORTH);
+        add(tabbedPane, BorderLayout.CENTER);
     }
 }
+        // Header Panel setup
+        JPanel headerPanel = new JPanel(new BorderLayout());
+        headerPanel.setBackground(new Color(41, 128, 185));
+        
+        JLabel clinicName = new JLabel("Cowmam's Clinic");
+        clinicName.setFont(new Font("Arial", Font.BOLD, 28));
+        clinicName.setForeground(Color.WHITE);
+        
+        JLabel subTitle = new JLabel("Healthcare Management System");
+        subTitle.setFont(new Font("Arial", Font.PLAIN, 14));
+        subTitle.setForeground(new Color(236, 240, 241));
+        
+        JPanel titlePanel = new JPanel(new GridLayout(2, 1));
+        titlePanel.add(clinicName);
+        titlePanel.add(subTitle);
+        
+        headerPanel.add(titlePanel, BorderLayout.WEST);
+        
+        // TabbedPane for Patients and Doctors
+        tabbedPane = new JTabbedPane();
+        tabbedPane.addTab("Patients", new JPanel());
+        tabbedPane.addTab("Doctors", new JPanel());
+        
+        add(headerPanel, BorderLayout.NORTH);
+        add(tabbedPane, BorderLayout.CENTER);
+    }
+}
+

@@ -48,3 +48,8 @@ private void initComponents() {
     startHourCombo = new JComboBox<>(hours);
     endHourCombo = new JComboBox<>(hours);
 }
+
+private void setupLayout() {
+    setLayout(new BorderLayout(10, 10));
+    // Layout for search panel, form panel, buttons, and table...
+}

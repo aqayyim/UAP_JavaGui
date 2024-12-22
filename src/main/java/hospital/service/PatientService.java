@@ -1,3 +1,32 @@
+private void addToTable(Patient patient) {
+    tableModel.addRow(new Object[]{
+        patient.getId(),
+        patient.getName(),
+        patient.getDateOfBirth(),
+        patient.getAddress(),
+        patient.getPhoneNumber()
+    });
+}
+
+@SuppressWarnings("unchecked")
+private void loadData() {
+    File file = new File(DATA_FILE);
+    if (!file.exists()) {
+        return;
+    }
+    
+    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+        Object obj = ois.readObject();
+        if (obj instanceof List<?>) {
+            patients = (List<Patient>) obj;
+            updateTable();
+        }
+    } catch (Exception e) {
+        System.err.println("Error loading data: " + e.getMessage());
+        patients = new ArrayList<>();
+    }
+}
+
 private void saveData() {
     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {
         oos.writeObject(patients);
@@ -6,5 +35,12 @@ private void saveData() {
             "Error saving data: " + e.getMessage(), 
             "Error", 
             JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+private void updateTable() {
+    tableModel.setRowCount(0);
+    for (Patient patient : patients) {
+        addToTable(patient);
     }
 }

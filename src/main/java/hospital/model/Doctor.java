@@ -6,8 +6,7 @@ public class Doctor {
     private String specialization;
     private String schedule;
     private String phoneNumber;
-
-    // Constructor untuk inisialisasi objek Doctor
+    
     public Doctor(String id, String name, String specialization, String schedule, String phoneNumber) {
         this.id = id;
         this.name = name;
@@ -16,9 +15,10 @@ public class Doctor {
         this.phoneNumber = phoneNumber;
     }
 
-    // Getter dan setter untuk id
+    // Getters and setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
+}
 
     // Getter dan setter untuk atribut lainnya
     public String getName() { return name; }
@@ -30,3 +30,15 @@ public class Doctor {
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 }
+    public String getPhoneNumber() { return phoneNumber; }
+    
+    public void setPhoneNumber(String phoneNumber) {
+        // Validasi format nomor telepon
+        if (phoneNumber != null && phoneNumber.matches("\\d{10,15}")) {
+            this.phoneNumber = phoneNumber;
+        } else {
+            throw new IllegalArgumentException("Invalid phone number");
+        }
+    }
+}
+

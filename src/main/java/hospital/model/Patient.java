@@ -27,7 +27,6 @@ public class Patient {
     public String getPhoneNumber() { return phoneNumber; }
     
     public void setPhoneNumber(String phoneNumber) {
-        // Validasi format nomor telepon
         if (phoneNumber != null && phoneNumber.matches("\\d{10,15}")) {
             this.phoneNumber = phoneNumber;
         } else {
@@ -35,3 +34,4 @@ public class Patient {
         }
     }
 }
+

@@ -21,3 +21,62 @@ public class PatientPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 }
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(addButton);
+        buttonPanel.add(clearButton);
+        add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private void addListeners() {
+        addButton.addActionListener(e -> addPatient());
+        clearButton.addActionListener(e -> clearForm());
+    }
+
+    private void addPatient() {
+        // Add patient logic
+    }
+
+    private void clearForm() {
+        // Clear form logic
+    }
+}
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(addButton);
+        buttonPanel.add(clearButton);
+        add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private void addListeners() {
+        addButton.addActionListener(e -> addPatient());
+        clearButton.addActionListener(e -> clearForm());
+    }
+
+    private void addPatient() {
+        // Add patient logic
+    }
+
+    private void clearForm() {
+        // Clear form logic
+    }
+}
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(addButton);
+        buttonPanel.add(clearButton);
+        add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private void addListeners() {
+        addButton.addActionListener(e -> addPatient());
+        clearButton.addActionListener(e -> clearForm());
+    }
+
+    private void addPatient() {
+        // Add patient logic
+    }
+
+    private void clearForm() {
+        // Clear form logic
+    }
+}
