@@ -4,10 +4,17 @@ hospital\gui\MainFrame.class
 hospital\model\Doctor.class
 hospital\gui\DoctorPanel.class
 hospital\service\DoctorService.class
+hospital\login\LoginDialog$2.class
+hospital\login\LoginDialog$1.class
 hospital\gui\PatientPanel.class
 hospital\service\PatientService.class
+hospital\service\UserService.class
+hospital\login\LoginDialog$3.class
+hospital\login\LoginDialog.class
 hospital\Main.class
 hospital\exception\ValidationException.class
+hospital\login\LoginException.class
 hospital\service\PatientService$1.class
 hospital\gui\PatientPanel$1.class
 hospital\model\Patient.class
+hospital\login\LoginDialog$4.class

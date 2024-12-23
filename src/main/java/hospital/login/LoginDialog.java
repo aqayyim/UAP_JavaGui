@@ -57,14 +57,12 @@ public class LoginDialog extends JDialog {
        loginButton = new JButton("Login");
        cancelButton = new JButton("Cancel");
        
-       // Set default button
        getRootPane().setDefaultButton(loginButton);
    }
 
    private void setupLayout() {
        setLayout(new BorderLayout());
        
-       // Header panel with title
        JPanel headerPanel = new JPanel();
        headerPanel.setBackground(new Color(41, 128, 185));
        headerPanel.setBorder(BorderFactory.createEmptyBorder(15, 25, 15, 25));
@@ -83,7 +81,6 @@ public class LoginDialog extends JDialog {
        titlePanel.add(subtitleLabel, BorderLayout.SOUTH);
        headerPanel.add(titlePanel);
        
-       // Input panel
        JPanel inputPanel = new JPanel(new GridBagLayout());
        inputPanel.setBorder(BorderFactory.createEmptyBorder(20, 25, 20, 25));
        
@@ -91,7 +88,6 @@ public class LoginDialog extends JDialog {
        gbc.insets = new Insets(5, 5, 5, 5);
        gbc.anchor = GridBagConstraints.WEST;
        
-       // Username field
        gbc.gridx = 0;
        gbc.gridy = 0;
        JLabel usernameLabel = new JLabel("Username:");
@@ -104,7 +100,6 @@ public class LoginDialog extends JDialog {
        usernameField.setFont(new Font("Arial", Font.PLAIN, 14));
        inputPanel.add(usernameField, gbc);
        
-       // Password field
        gbc.gridx = 0;
        gbc.gridy = 1;
        gbc.weightx = 0;
@@ -117,14 +112,12 @@ public class LoginDialog extends JDialog {
        passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
        inputPanel.add(passwordField, gbc);
        
-       // Button panel
        JPanel buttonPanel = new JPanel();
        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 25, 20, 25));
        
        cancelButton.setFont(new Font("Arial", Font.BOLD, 12));
        loginButton.setFont(new Font("Arial", Font.BOLD, 12));
        
-       // Style the buttons
        loginButton.setBackground(new Color(41, 128, 185));
        loginButton.setForeground(Color.BLACK);
        loginButton.setFocusPainted(false);
@@ -136,7 +129,6 @@ public class LoginDialog extends JDialog {
        buttonPanel.add(cancelButton);
        buttonPanel.add(loginButton);
        
-       // Add all panels to dialog
        add(headerPanel, BorderLayout.NORTH);
        add(inputPanel, BorderLayout.CENTER);
        add(buttonPanel, BorderLayout.SOUTH);
@@ -157,7 +149,6 @@ public class LoginDialog extends JDialog {
            }
        });
        
-       // Add key listeners for better user experience
        KeyListener keyListener = new KeyListener() {
            @Override
            public void keyPressed(KeyEvent e) {

@@ -1,4 +1,3 @@
-// hospital/gui/DoctorPanel.java
 package hospital.gui;
 
 import java.awt.BorderLayout;
@@ -41,7 +40,6 @@ public class DoctorPanel extends JPanel {
     private JTextField searchField;
     private int selectedDoctorId = -1;
     
-    // Components for schedule
     private JComboBox<String> startDayCombo;
     private JComboBox<String> endDayCombo;
     private JComboBox<String> startHourCombo;
@@ -155,17 +153,15 @@ public class DoctorPanel extends JPanel {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.anchor = GridBagConstraints.WEST;
         
-        // Add form components
         addFormField(formPanel, "Name:", nameField, gbc, 0);
         addFormField(formPanel, "Specialization:", specializationField, gbc, 1);
         addFormField(formPanel, "Schedule:", schedulePanel, gbc, 2);
         addFormField(formPanel, "Phone:", phoneField, gbc, 3);
         
-        // Buttons panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         buttonPanel.add(editButton);
         buttonPanel.add(addButton);
-        buttonPanel.add(deleteButton); // Ensure deleteButton is added to the panel
+        buttonPanel.add(deleteButton);
         buttonPanel.add(addButton);
         
         gbc.gridx = 1;
@@ -173,11 +169,9 @@ public class DoctorPanel extends JPanel {
         gbc.anchor = GridBagConstraints.EAST;
         formPanel.add(buttonPanel, gbc);
         
-        // Table Panel
         JScrollPane scrollPane = new JScrollPane(doctorTable);
         scrollPane.setBorder(createStyledTitledBorder("Doctor List"));
         
-        // Main layout
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(searchPanel, BorderLayout.NORTH);
         topPanel.add(formPanel, BorderLayout.CENTER);
@@ -185,9 +179,6 @@ public class DoctorPanel extends JPanel {
         this.add(topPanel, BorderLayout.NORTH);
         
         this.add(scrollPane, BorderLayout.CENTER);
-        
-        // Ensure all components are initialized before adding them
-        // Removed undefined variable 'comp' handling
     }
     
     private TitledBorder createStyledTitledBorder(String title) {
@@ -324,7 +315,7 @@ public class DoctorPanel extends JPanel {
             nameField.setText(doctor.getName());
             specializationField.setText(doctor.getSpecialization());
             phoneField.setText(doctor.getPhone());
-            // Parse and set schedule
+    
             String[] scheduleParts = doctor.getSchedule().split("[: -]");
             startDayCombo.setSelectedItem(scheduleParts[0]);
             endDayCombo.setSelectedItem(scheduleParts[1]);
@@ -407,11 +398,8 @@ public class DoctorPanel extends JPanel {
     }
 
     public void setViewOnlyMode() {
-        // Disable adding new doctors
         addButton.setEnabled(false);
-        // Disable editing existing doctors
                 editButton.setEnabled(false);
-                // Disable deleting doctors
                 deleteButton.setEnabled(false);
             }
 

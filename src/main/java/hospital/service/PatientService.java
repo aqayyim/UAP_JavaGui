@@ -123,7 +123,6 @@ public class PatientService {
     }
 
     public Patient getPatientAt(int selectedRow) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPatientAt'");
     }
 }

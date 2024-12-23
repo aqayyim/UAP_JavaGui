@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="PatientTest" time="0.437" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="PatientTest" time="1.946" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Entertainment\kuliah\smt 3\Program Lanjut\prak, Program Lanjut\test\latihanpush\target\test-classes;C:\Entertainment\kuliah\smt 3\Program Lanjut\prak, Program Lanjut\test\latihanpush\target\classes;C:\Users\Lenhy\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Lenhy\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.class.path" value="d:\Kuliah\3. Semester 3\Proglan\UAP_JavaGui\target\test-classes;d:\Kuliah\3. Semester 3\Proglan\UAP_JavaGui\target\classes;C:\Users\PF3X7\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\PF3X7\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -13,44 +13,44 @@
     <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="ID"/>
+    <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\Lenhy\AppData\Local\Temp\surefire701720381888192265\surefirebooter5957335634804699555.jar C:\Users\Lenhy\AppData\Local\Temp\surefire701720381888192265 2024-12-22T03-40-51_171-jvmRun1 surefire15173771621712038088tmp surefire_03128204484593150861tmp"/>
+    <property name="sun.java.command" value="C:\Users\PF3X7\AppData\Local\Temp\surefire7880690116882388605\surefirebooter12058625927064820166.jar C:\Users\PF3X7\AppData\Local\Temp\surefire7880690116882388605 2024-12-23T18-50-29_305-jvmRun1 surefire6040163985734199584tmp surefire_02064454894261251368tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Entertainment\kuliah\smt 3\Program Lanjut\prak, Program Lanjut\test\latihanpush\target\test-classes;C:\Entertainment\kuliah\smt 3\Program Lanjut\prak, Program Lanjut\test\latihanpush\target\classes;C:\Users\Lenhy\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Lenhy\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="surefire.test.class.path" value="d:\Kuliah\3. Semester 3\Proglan\UAP_JavaGui\target\test-classes;d:\Kuliah\3. Semester 3\Proglan\UAP_JavaGui\target\classes;C:\Users\PF3X7\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\PF3X7\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\Lenhy"/>
+    <property name="user.home" value="C:\Users\PF3X7"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="java.version.date" value="2024-01-16"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-21"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Entertainment\kuliah\smt 3\Program Lanjut\prak, Program Lanjut\test\latihanpush"/>
+    <property name="basedir" value="d:\Kuliah\3. Semester 3\Proglan\UAP_JavaGui"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Lenhy\AppData\Local\Temp\surefire701720381888192265\surefirebooter5957335634804699555.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\PF3X7\AppData\Local\Temp\surefire7880690116882388605\surefirebooter12058625927064820166.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.2+13-LTS-58"/>
-    <property name="user.name" value="Lenhy"/>
+    <property name="user.name" value="LENOVO"/>
     <property name="stdout.encoding" value="Cp1252"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="localRepository" value="C:\Users\Lenhy\.m2\repository"/>
+    <property name="localRepository" value="C:\Users\PF3X7\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="C:\Users\Lenhy\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="C:\Users\PF3X7\AppData\Local\Temp\"/>
     <property name="java.version" value="21.0.2"/>
-    <property name="user.dir" value="C:\Entertainment\kuliah\smt 3\Program Lanjut\prak, Program Lanjut\test\latihanpush"/>
+    <property name="user.dir" value="d:\Kuliah\3. Semester 3\Proglan\UAP_JavaGui"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Python313\Scripts\;C:\Program Files\Python313\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Bandizip\;C:\Entertainment\kuliah\MinGW\bin;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\apache-maven-3.9.9\bin;C:\Users\Lenhy\AppData\Local\Programs\Eclipse Adoptium\jdk-11.0.25.9-hotspot\bin;C:\Program Files\Java\jdk-21\bin;C:\Users\Lenhy\AppData\Local\Microsoft\WindowsApps;C:\Users\Lenhy\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Lenhy\AppData\Roaming\npm;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft\jdk-21.0.1.12-hotspot\bin;C:\Program Files (x86)\Falcon\MinGW\bin;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Falcon\MinGW\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\nodejs\;C:\Program Files\Java\jdk-21\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Maven\apache-maven-3.9.9\bin;C:\xampp\php;C:\Program Files\PowerShell\7-preview\preview;C:\Users\PF3X7\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\PF3X7\AppData\Local\Programs\Python\Python312\;C:\Users\PF3X7\AppData\Local\Microsoft\WindowsApps;C:\Users\PF3X7\AppData\Local\GitHubDesktop\bin;C:\Users\PF3X7\AppData\Roaming\npm;C:\Program Files\Java\jdk-21\bin;C:\Program Files\Java\jdk-21\bin;C:\Users\PF3X7\AppData\Local\Programs\Microsoft VS Code\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -58,6 +58,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testPatientID" classname="PatientTest" time="0.422"/>
-  <testcase name="testPatientCreation" classname="PatientTest" time="0.015"/>
+  <testcase name="testPatientID" classname="PatientTest" time="1.933"/>
+  <testcase name="testPatientCreation" classname="PatientTest" time="0.013"/>
 </testsuite>

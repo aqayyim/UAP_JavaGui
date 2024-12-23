@@ -1,4 +1,3 @@
-// hospital/gui/PatientPanel.java
 package hospital.gui;
 
 import java.awt.BorderLayout;

@@ -1,12 +1,12 @@
 package hospital;
 
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import hospital.gui.MainFrame;
 import hospital.login.LoginDialog;
 import hospital.service.UserService;
-import javax.swing.JFrame;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,14 +18,11 @@ public class Main {
         }
 
         SwingUtilities.invokeLater(() -> {
-            // Buat temporary frame untuk parent dari login dialog
             JFrame tempFrame = new JFrame();
 
-            // Tampilkan login dialog
             LoginDialog loginDialog = new LoginDialog(tempFrame);
             loginDialog.setVisible(true);
 
-            // Cek hasil login
             if (loginDialog.isAuthenticated()) {
                 UserService userService = new UserService();
                 String username = userService.getLoggedInUsername();
@@ -40,7 +37,6 @@ public class Main {
                 System.exit(0);
             }
 
-            // Hapus temporary frame
             tempFrame.dispose();
         });
     }

@@ -18,7 +18,6 @@ public class Doctor implements Serializable {
         this.phoneNumber = phoneNumber;
     }
     
-    // Getters and setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
     public String getName() { return name; }
@@ -31,10 +30,7 @@ public class Doctor implements Serializable {
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
     public String getPhone() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPhone'");
     }
-
-    // Remove duplicate getPhone methods
 
 }
