@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import hospital.login.LoginDialog;
@@ -25,15 +26,26 @@ public class MainFrame extends JFrame {
     private DoctorPanel doctorPanel;
     
     public MainFrame() {
-        try {
-            showLoginDialog();
-            initComponents();
-            setupLayout();
-            customizeAppearance();
-        } catch (LoginException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Login Failed", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
-        }
+        initComponents();
+        setupLayout();
+        customizeAppearance();
+        
+        // Use SwingUtilities.invokeLater to ensure the constructor completes before showing the login dialog
+        SwingUtilities.invokeLater(() -> {
+            try {
+                showLoginDialog();
+                showMainPanel();
+            } catch (LoginException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Login Failed", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
+            }
+        });
+    }
+
+    public void enableDoctorFeatures() {
+        // Logic to enable editing patients and adding doctors
+        doctorPanel.setViewOnlyMode(); // Enable editing and adding
+        // Add doctorPanel to the frame or update the UI accordingly
     }
 
     private void showLoginDialog() throws LoginException {
@@ -42,6 +54,16 @@ public class MainFrame extends JFrame {
         if (!loginDialog.isAuthenticated()) {
             throw new LoginException("Invalid username or password. Exiting application.");
         }
+        if (loginDialog.getUserRole().equals("patient")) {
+            doctorPanel.setViewOnlyMode(true);
+        } else if (loginDialog.getUserRole().equals("doctor") || loginDialog.getUserRole().equals("admin")) {
+            enableDoctorFeatures();
+        }
+    }
+
+    private void showMainPanel() {
+        // Show the main panel after successful login
+        setVisible(true);
     }
     
     private void initComponents() {
