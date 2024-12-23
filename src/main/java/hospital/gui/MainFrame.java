@@ -11,15 +11,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.Timer;
 
 import hospital.login.LoginDialog;
-import hospital.login.LoginException;
+
 
 public class MainFrame extends JFrame {
     private JTabbedPane tabbedPane;
@@ -27,45 +25,35 @@ public class MainFrame extends JFrame {
     private DoctorPanel doctorPanel;
     private JLabel timeLabel;
 
+
+    public static void showApplication() {
+        // Buat frame tapi jangan tampilkan dulu
+        MainFrame frame = new MainFrame();
+        
+        // Tampilkan login dialog
+        LoginDialog loginDialog = new LoginDialog(frame);
+        loginDialog.setVisible(true);
+        
+        // Cek hasil login
+        if (loginDialog.isAuthenticated()) {
+            // Jika login berhasil, tampilkan main frame
+            frame.setVisible(true);
+        } else {
+            // Jika login gagal, keluar dari aplikasi
+            System.exit(0);
+        }
+    }
     public MainFrame() {
+        // Hapus try-catch showLoginDialog() dari sini
         initComponents();
         setupLayout();
         customizeAppearance();
-        
-        // Use SwingUtilities.invokeLater to ensure the constructor completes before showing the login dialog
-        SwingUtilities.invokeLater(() -> {
-            try {
-                showLoginDialog();
-                showMainPanel();
-            } catch (LoginException e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "Login Failed", JOptionPane.ERROR_MESSAGE);
-                System.exit(0);
-            }
-        });
     }
 
     public void enableDoctorFeatures() {
         // Enable editing features for both patient and doctor panels
         patientPanel.setViewOnlyMode(false);
         doctorPanel.setViewOnlyMode(false);
-    }
-
-    private void showLoginDialog() throws LoginException {
-        LoginDialog loginDialog = new LoginDialog(this);
-        loginDialog.setVisible(true);
-        if (!loginDialog.isAuthenticated()) {
-            throw new LoginException("Invalid username or password. Exiting application.");
-        }
-        if (loginDialog.getUserRole().equals("patient")) {
-            tabbedPane.remove(doctorPanel);
-        } else if (loginDialog.getUserRole().equals("doctor") || loginDialog.getUserRole().equals("admin")) {
-            enableDoctorFeatures();
-        }
-    }
-
-    private void showMainPanel() {
-        // Show the main panel after successful login
-        setVisible(true);
     }
 
     private void initComponents() {
