@@ -1,11 +1,19 @@
 package hospital.login;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class LoginDialog extends JDialog {
     private JTextField usernameField;
@@ -15,6 +23,7 @@ public class LoginDialog extends JDialog {
     private Map<String, String> doctorDatabase;
     private Map<String, String> patientDatabase;
     private boolean authenticated;
+    private String userRole;
 
     public LoginDialog(JFrame parent) {
         super(parent, "Login", true);
@@ -48,27 +57,21 @@ public class LoginDialog extends JDialog {
     }
 
     private void setupListeners() {
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Perform login validation here
-                String username = usernameField.getText();
-                String password = new String(passwordField.getPassword());
-                if (validateLogin(username, password)) {
-                    authenticated = true;
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(LoginDialog.this, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+        loginButton.addActionListener(e -> {
+            // Perform login validation here
+            String username = usernameField.getText();
+            String password = new String(passwordField.getPassword());
+            if (validateLogin(username, password)) {
+                authenticated = true;
+                userRole = getUserRoleFromDatabase(username);
+                dispose();
+                showMainPanel(userRole);
+            } else {
+                JOptionPane.showMessageDialog(LoginDialog.this, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        cancelButton.addActionListener(e -> System.exit(0));
     }
 
     private void initializeDatabases() {
@@ -80,18 +83,41 @@ public class LoginDialog extends JDialog {
     }
 
     private boolean validateLogin(String username, String password) {
-        // Check in doctor database
-        if (doctorDatabase.containsKey(username) && doctorDatabase.get(username).equals(password)) {
-            return true;
-        }
-        // Check in patient database
-        if (patientDatabase.containsKey(username) && patientDatabase.get(username).equals(password)) {
-            return true;
-        }
-        return false;
+        // Check in doctor and patient databases
+        return (doctorDatabase.containsKey(username) && doctorDatabase.get(username).equals(password)) ||
+               (patientDatabase.containsKey(username) && patientDatabase.get(username).equals(password));
     }
 
     public boolean isAuthenticated() {
         return authenticated;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    private String getUserRoleFromDatabase(String username) {
+        if (doctorDatabase.containsKey(username)) {
+            return "Doctor";
+        } else if (patientDatabase.containsKey(username)) {
+            return "Patient";
+        }
+        return "Unknown";
+    }
+
+    private void showMainPanel(String role) {
+        switch (role) {
+            case "Doctor" -> {
+                // Show doctor main panel
+                JOptionPane.showMessageDialog(this, "Welcome Doctor!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
+            }
+            case "Patient" -> {
+                // Show patient main panel
+                JOptionPane.showMessageDialog(this, "Welcome Patient!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
+            }
+            default -> {
+                JOptionPane.showMessageDialog(this, "Unknown role!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }

@@ -46,9 +46,9 @@ public class PatientService {
                 "Patient added successfully", 
                 "Success", 
                 JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, 
-                "Error adding patient: " + e.getMessage(), 
+                "Invalid argument: " + e.getMessage(), 
                 "Error", 
                 JOptionPane.ERROR_MESSAGE);
         }

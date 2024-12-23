@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.Timer;
 
@@ -27,15 +28,26 @@ public class MainFrame extends JFrame {
     private JLabel timeLabel;
 
     public MainFrame() {
-        try {
-            showLoginDialog();
-            initComponents();
-            setupLayout();
-            customizeAppearance();
-        } catch (LoginException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Login Failed", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
-        }
+        initComponents();
+        setupLayout();
+        customizeAppearance();
+        
+        // Use SwingUtilities.invokeLater to ensure the constructor completes before showing the login dialog
+        SwingUtilities.invokeLater(() -> {
+            try {
+                showLoginDialog();
+                showMainPanel();
+            } catch (LoginException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Login Failed", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
+            }
+        });
+    }
+
+    public void enableDoctorFeatures() {
+        // Enable editing features for both patient and doctor panels
+        patientPanel.setViewOnlyMode(false);
+        doctorPanel.setViewOnlyMode(false);
     }
 
     private void showLoginDialog() throws LoginException {
@@ -44,6 +56,16 @@ public class MainFrame extends JFrame {
         if (!loginDialog.isAuthenticated()) {
             throw new LoginException("Invalid username or password. Exiting application.");
         }
+        if (loginDialog.getUserRole().equals("patient")) {
+            tabbedPane.remove(doctorPanel);
+        } else if (loginDialog.getUserRole().equals("doctor") || loginDialog.getUserRole().equals("admin")) {
+            enableDoctorFeatures();
+        }
+    }
+
+    private void showMainPanel() {
+        // Show the main panel after successful login
+        setVisible(true);
     }
 
     private void initComponents() {
@@ -151,7 +173,7 @@ public class MainFrame extends JFrame {
         statusBar.add(statusLabel);
         add(statusBar, BorderLayout.SOUTH);
     }
-    
+
     private void customizeAppearance() {
         // Set custom colors for tabs
         tabbedPane.setBackground(new Color(236, 240, 241));

@@ -10,8 +10,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -35,10 +33,11 @@ public class DoctorPanel extends JPanel {
     private JTextField specializationField;
     private JTextField phoneField;
     private JTable doctorTable;
-    private DoctorService doctorService;
+    private final DoctorService doctorService;
     private JButton addButton;
     private JButton deleteButton;
     private JButton clearButton;
+    private JButton editButton;
     private JTextField searchField;
     
     // Components for schedule
@@ -90,8 +89,9 @@ public class DoctorPanel extends JPanel {
         
         // Initialize buttons
         addButton = createStyledButton("Add Doctor", new Color(46, 204, 113));
-        deleteButton = createStyledButton("Delete", new Color(231, 76, 60));
         clearButton = createStyledButton("Clear", new Color(52, 73, 94));
+        editButton = createStyledButton("Edit", new Color(52, 152, 219));
+        deleteButton = createStyledButton("Delete", new Color(231, 76, 60)); // Initialize deleteButton
         
         // Initialize table
         doctorTable = new JTable(doctorService.getTableModel());
@@ -162,8 +162,9 @@ public class DoctorPanel extends JPanel {
         
         // Buttons panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.add(clearButton);
-        buttonPanel.add(deleteButton);
+        buttonPanel.add(editButton);
+        buttonPanel.add(addButton);
+        buttonPanel.add(deleteButton); // Ensure deleteButton is added to the panel
         buttonPanel.add(addButton);
         
         gbc.gridx = 1;
@@ -180,8 +181,12 @@ public class DoctorPanel extends JPanel {
         topPanel.add(searchPanel, BorderLayout.NORTH);
         topPanel.add(formPanel, BorderLayout.CENTER);
         
-        add(topPanel, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
+        this.add(topPanel, BorderLayout.NORTH);
+        
+        this.add(scrollPane, BorderLayout.CENTER);
+        
+        // Ensure all components are initialized before adding them
+        // Removed undefined variable 'comp' handling
     }
     
     private TitledBorder createStyledTitledBorder(String title) {
@@ -211,8 +216,11 @@ public class DoctorPanel extends JPanel {
         deleteButton.addActionListener(e -> deleteDoctor());
         
         searchField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) { search(); }
+            @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) { search(); }
+            @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) { search(); }
         });
     }
@@ -255,18 +263,12 @@ public class DoctorPanel extends JPanel {
             noButton.setForeground(Color.red);
 
             JDialog dialog = new JDialog();
-            yesButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            yesButton.addActionListener(e -> {
                 doctorService.deleteDoctor(selectedRow);
                 dialog.dispose();
-                    }
-                });
+            });
 
-            noButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dialog.dispose();
-                    }  
-                });
+            noButton.addActionListener(e -> dialog.dispose());
 
             JPanel panel = new JPanel();
             panel.add(messageLabel);
@@ -340,4 +342,20 @@ public class DoctorPanel extends JPanel {
         phoneField.setText("");
         nameField.requestFocus();
     }
+
+    public void setViewOnlyMode() {
+        // Disable adding new doctors
+        addButton.setEnabled(false);
+        // Disable editing existing doctors
+                editButton.setEnabled(false);
+                // Disable deleting doctors
+                deleteButton.setEnabled(false);
+            }
+
+    public void setViewOnlyMode(boolean viewOnly) {
+        addButton.setEnabled(!viewOnly);
+        editButton.setEnabled(!viewOnly);
+        deleteButton.setEnabled(!viewOnly);
+    }
+        
 }

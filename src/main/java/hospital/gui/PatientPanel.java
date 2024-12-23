@@ -1,12 +1,31 @@
 // hospital/gui/PatientPanel.java
 package hospital.gui;
 
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+
+import hospital.exception.ValidationException;
 import hospital.model.Patient;
 import hospital.service.PatientService;
-import hospital.exception.ValidationException;
 
 public class PatientPanel extends JPanel {
     private JTextField nameField;
@@ -17,13 +36,14 @@ public class PatientPanel extends JPanel {
     private JTextField addressField;
     private JTextField phoneField;
     private JTable patientTable;
-    private PatientService patientService;
+    private final PatientService patientService;
     private JButton addButton;
     private JButton deleteButton;
     private JButton clearButton;
     private JTextField searchField;
     public String searchText;
-    
+    private JButton editButton;
+
     public PatientPanel() {
         patientService = new PatientService();
         initComponents();
@@ -60,6 +80,7 @@ public class PatientPanel extends JPanel {
         addButton = createStyledButton("Add Patient", new Color(46, 204, 113));
         deleteButton = createStyledButton("Delete", new Color(231, 76, 60));
         clearButton = createStyledButton("Clear", new Color(52, 73, 94));
+        editButton = createStyledButton("Edit", new Color(52, 152, 219));
         
         // Initialize table
         patientTable = new JTable(patientService.getTableModel());
@@ -151,6 +172,7 @@ public class PatientPanel extends JPanel {
         buttonPanel.add(clearButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(addButton);
+        buttonPanel.add(editButton);
         
         gbc.gridx = 1;
         gbc.gridy = 4;
@@ -197,8 +219,11 @@ public class PatientPanel extends JPanel {
         deleteButton.addActionListener(e -> deletePatient());
         
         searchField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) { search(); }
+            @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) { search(); }
+            @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) { search(); }
         });
     }
@@ -278,5 +303,11 @@ public class PatientPanel extends JPanel {
         addressField.setText("");
         phoneField.setText("");
         nameField.requestFocus();
+    }
+
+    public void setViewOnlyMode(boolean viewOnly) {
+        addButton.setEnabled(!viewOnly);
+        editButton.setEnabled(!viewOnly);
+        deleteButton.setEnabled(!viewOnly);
     }
 }
