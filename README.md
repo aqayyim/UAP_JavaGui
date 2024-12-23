@@ -21,7 +21,7 @@ Cowmam's Clinic Management System adalah aplikasi desktop yang dirancang untuk m
 
 ## 📁 Struktur Project
 ```
-LUAP_JAVAGUI
+UAP_JAVAGUI
 ├── src/
 │   ├── main/
 │   │   └── java/
