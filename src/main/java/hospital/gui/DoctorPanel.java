@@ -39,6 +39,7 @@ public class DoctorPanel extends JPanel {
     private JButton clearButton;
     private JButton editButton;
     private JTextField searchField;
+    private int selectedDoctorId = -1;
     
     // Components for schedule
     private JComboBox<String> startDayCombo;
@@ -214,7 +215,14 @@ public class DoctorPanel extends JPanel {
         addButton.addActionListener(e -> addDoctor());
         clearButton.addActionListener(e -> clearForm());
         deleteButton.addActionListener(e -> deleteDoctor());
-        
+        editButton.addActionListener(e -> editDoctor());
+
+        doctorTable.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                loadSelectedDoctor();
+            }
+        });
+
         searchField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) { search(); }
@@ -308,6 +316,60 @@ public class DoctorPanel extends JPanel {
         searchText = searchField.getText().toLowerCase();
     }
     
+    private void loadSelectedDoctor() {
+        int selectedRow = doctorTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            Doctor doctor = doctorService.getDoctorAt(selectedRow);
+            selectedDoctorId = Integer.parseInt(doctor.getId());
+            nameField.setText(doctor.getName());
+            specializationField.setText(doctor.getSpecialization());
+            phoneField.setText(doctor.getPhone());
+            // Parse and set schedule
+            String[] scheduleParts = doctor.getSchedule().split("[: -]");
+            startDayCombo.setSelectedItem(scheduleParts[0]);
+            endDayCombo.setSelectedItem(scheduleParts[1]);
+            startHourCombo.setSelectedItem(scheduleParts[2]);
+            endHourCombo.setSelectedItem(scheduleParts[3]);
+        }
+    }
+
+    private void editDoctor() {
+        if (selectedDoctorId >= 0) {
+            try {
+                validateInput();
+                String schedule = String.format("%s-%s: %s-%s",
+                    startDayCombo.getSelectedItem().toString().substring(0, 3),
+                    endDayCombo.getSelectedItem().toString().substring(0, 3),
+                    startHourCombo.getSelectedItem(),
+                    endHourCombo.getSelectedItem());
+
+                Doctor doctor = new Doctor(
+                    String.valueOf(selectedDoctorId),
+                    nameField.getText().trim(),
+                    specializationField.getText().trim(),
+                    schedule,
+                    phoneField.getText().trim()
+                );
+                doctorService.updateDoctor(selectedDoctorId, doctor);
+                clearForm();
+                JOptionPane.showMessageDialog(this,
+                    "Doctor updated successfully!",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+            } catch (ValidationException ex) {
+                JOptionPane.showMessageDialog(this,
+                    ex.getMessage(),
+                    "Validation Error",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,
+                "Please select a doctor to edit",
+                "No Selection",
+                JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
     private void validateInput() throws ValidationException {
         if (nameField.getText().trim().isEmpty()) {
             throw new ValidationException("Name is required");
@@ -341,6 +403,7 @@ public class DoctorPanel extends JPanel {
         endHourCombo.setSelectedIndex(16);  // Default to 16:00
         phoneField.setText("");
         nameField.requestFocus();
+        selectedDoctorId = -1;
     }
 
     public void setViewOnlyMode() {

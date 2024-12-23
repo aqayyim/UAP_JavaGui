@@ -43,6 +43,7 @@ public class PatientPanel extends JPanel {
     private JTextField searchField;
     public String searchText;
     private JButton editButton;
+    private int selectedPatientId = -1;
 
     public PatientPanel() {
         patientService = new PatientService();
@@ -217,7 +218,14 @@ public class PatientPanel extends JPanel {
         addButton.addActionListener(e -> addPatient());
         clearButton.addActionListener(e -> clearForm());
         deleteButton.addActionListener(e -> deletePatient());
-        
+        editButton.addActionListener(e -> editPatient());
+
+        patientTable.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                loadSelectedPatient();
+            }
+        });
+
         searchField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) { search(); }
@@ -303,6 +311,59 @@ public class PatientPanel extends JPanel {
         addressField.setText("");
         phoneField.setText("");
         nameField.requestFocus();
+        selectedPatientId = -1;
+    }
+
+    private void loadSelectedPatient() {
+        int selectedRow = patientTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            Patient patient = patientService.getPatientAt(selectedRow);
+            selectedPatientId = Integer.parseInt(patient.getId());
+            nameField.setText(patient.getName());
+            // Parse and set date of birth
+            String[] dobParts = patient.getDateOfBirth().split("/");
+            dayComboBox.setSelectedItem(dobParts[0]);
+            monthComboBox.setSelectedItem(dobParts[1]);
+            yearComboBox.setSelectedItem(dobParts[2]);
+            addressField.setText(patient.getAddress());
+            phoneField.setText(patient.getPhone());
+        }
+    }
+
+    private void editPatient() {
+        if (selectedPatientId >= 0) {
+            try {
+                validateInput();
+                String dateOfBirth = String.format("%s/%s/%s",
+                    dayComboBox.getSelectedItem(),
+                    monthComboBox.getSelectedItem(),
+                    yearComboBox.getSelectedItem());
+
+                Patient patient = new Patient(
+                    String.valueOf(selectedPatientId),
+                    nameField.getText().trim(),
+                    dateOfBirth,
+                    addressField.getText().trim(),
+                    phoneField.getText().trim()
+                );
+                patientService.updatePatient(selectedPatientId, patient);
+                clearForm();
+                JOptionPane.showMessageDialog(this,
+                    "Patient updated successfully!",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+            } catch (ValidationException ex) {
+                JOptionPane.showMessageDialog(this,
+                    ex.getMessage(),
+                    "Validation Error",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,
+                "Please select a patient to edit",
+                "No Selection",
+                JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     public void setViewOnlyMode(boolean viewOnly) {

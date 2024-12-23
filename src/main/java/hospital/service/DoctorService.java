@@ -1,11 +1,18 @@
 package hospital.service;
 
-import hospital.model.Doctor;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JOptionPane;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.*;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import hospital.model.Doctor;
 
 public class DoctorService {
     private List<Doctor> doctors;
@@ -113,5 +120,10 @@ public class DoctorService {
             updateTable();
             saveData();
         }
+    }
+
+    public Doctor getDoctorAt(int selectedRow) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDoctorAt'");
     }
 }
