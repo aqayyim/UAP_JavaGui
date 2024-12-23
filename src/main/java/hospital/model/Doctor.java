@@ -29,4 +29,12 @@ public class Doctor implements Serializable {
     public void setSchedule(String schedule) { this.schedule = schedule; }
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    public String getPhone() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPhone'");
+    }
+
+    // Remove duplicate getPhone methods
+
 }
