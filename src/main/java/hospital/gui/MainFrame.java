@@ -11,9 +11,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
+
+import hospital.login.LoginDialog;
+import hospital.login.LoginException;
 
 public class MainFrame extends JFrame {
     private JTabbedPane tabbedPane;
@@ -21,9 +25,23 @@ public class MainFrame extends JFrame {
     private DoctorPanel doctorPanel;
     
     public MainFrame() {
-        initComponents();
-        setupLayout();
-        customizeAppearance();
+        try {
+            showLoginDialog();
+            initComponents();
+            setupLayout();
+            customizeAppearance();
+        } catch (LoginException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Login Failed", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
+    }
+
+    private void showLoginDialog() throws LoginException {
+        LoginDialog loginDialog = new LoginDialog(this);
+        loginDialog.setVisible(true);
+        if (!loginDialog.isAuthenticated()) {
+            throw new LoginException("Invalid username or password. Exiting application.");
+        }
     }
     
     private void initComponents() {
