@@ -107,17 +107,17 @@ public class LoginDialog extends JDialog {
 
     private void showMainPanel(String role) {
         switch (role) {
-            case "Doctor":
+            case "Doctor" -> {
                 // Show doctor main panel
                 JOptionPane.showMessageDialog(this, "Welcome Doctor!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
-                break;
-            case "Patient":
+            }
+            case "Patient" -> {
                 // Show patient main panel
                 JOptionPane.showMessageDialog(this, "Welcome Patient!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
-                break;
-            default:
+            }
+            default -> {
                 JOptionPane.showMessageDialog(this, "Unknown role!", "Error", JOptionPane.ERROR_MESSAGE);
-                break;
+            }
         }
     }
 }

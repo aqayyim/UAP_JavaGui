@@ -352,9 +352,10 @@ public class DoctorPanel extends JPanel {
                 deleteButton.setEnabled(false);
             }
 
-    public void setViewOnlyMode(boolean b) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setViewOnlyMode'");
+    public void setViewOnlyMode(boolean viewOnly) {
+        addButton.setEnabled(!viewOnly);
+        editButton.setEnabled(!viewOnly);
+        deleteButton.setEnabled(!viewOnly);
     }
         
 }

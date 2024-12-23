@@ -43,9 +43,9 @@ public class MainFrame extends JFrame {
     }
 
     public void enableDoctorFeatures() {
-        // Logic to enable editing patients and adding doctors
-        doctorPanel.setViewOnlyMode(); // Enable editing and adding
-        // Add doctorPanel to the frame or update the UI accordingly
+        // Enable editing features for both patient and doctor panels
+        patientPanel.setViewOnlyMode(false);
+        doctorPanel.setViewOnlyMode(false);
     }
 
     private void showLoginDialog() throws LoginException {
@@ -55,7 +55,7 @@ public class MainFrame extends JFrame {
             throw new LoginException("Invalid username or password. Exiting application.");
         }
         if (loginDialog.getUserRole().equals("patient")) {
-            doctorPanel.setViewOnlyMode(true);
+            tabbedPane.remove(doctorPanel);
         } else if (loginDialog.getUserRole().equals("doctor") || loginDialog.getUserRole().equals("admin")) {
             enableDoctorFeatures();
         }
