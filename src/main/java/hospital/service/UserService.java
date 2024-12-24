@@ -13,5 +13,9 @@ public class UserService {
     public boolean isAdmin(String username) {
         return "admin".equals(username);
     }
+
+    public boolean isPatient(String username) {
+        return true; // Placeholder
+    }
     
 }

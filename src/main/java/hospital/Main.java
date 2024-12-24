@@ -30,6 +30,8 @@ public class Main {
 
                 if (userService.isDoctor(username) || userService.isAdmin(username)) {
                     mainFrame.enableDoctorFeatures();
+                } else if (userService.isPatient(username)) {
+                    mainFrame.disableDoctorPanelEditing();
                 }
 
                 mainFrame.setVisible(true);

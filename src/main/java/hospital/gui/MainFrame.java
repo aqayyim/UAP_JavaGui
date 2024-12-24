@@ -46,6 +46,13 @@ public class MainFrame extends JFrame {
     public void enableDoctorFeatures() {
         patientPanel.setViewOnlyMode(false);
         doctorPanel.setViewOnlyMode(false);
+        doctorPanel.setEnabled(true);
+        // ...additional code to enable features...
+    }
+
+    public void disableDoctorPanelEditing() {
+        doctorPanel.setEnabled(false);
+        // ...additional code to disable features...
     }
 
     private void initComponents() {
