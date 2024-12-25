@@ -172,6 +172,8 @@ public class LoginDialog extends JDialog {
        userDatabase = new HashMap<>();
        userDatabase.put("admin123", "admin123");
        userDatabase.put("user123", "user123");
+       userDatabase.put("doctor123", "doctor123");
+       userDatabase.put("patient123", "patient123");
    }
 
    private void performLogin() {
